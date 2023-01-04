@@ -28,22 +28,33 @@ export default function Home() {
 
   return (
     <Container>
-      <Typography
-        variant="h1"
-        sx={{
-          fontSize: "3rem",
-          fontWeight: 400,
-          color: "primary.main",
-          textAlign: "center",
-          my: 6,
-        }}
-      >
-        AI Code Explainer
-      </Typography>
+      <Box sx={{ my: 6 }}>
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: "3rem",
+            fontWeight: 400,
+            color: "primary.main",
+            textAlign: "center",
+            mb: 2,
+          }}
+        >
+          Code Explainer
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: "0.875rem",
+            color: "#363d54",
+            textAlign: "center",
+          }}
+        >
+          Powered by OpenAi
+        </Typography>
+      </Box>
       <TextField
         multiline
         minRows={10}
-        placeholder="Paste your code"
+        placeholder="Paste your code in here and let the AI explain it for you"
         color="primary"
         value={input}
         onChange={(e) => setInput(e.target.value)}

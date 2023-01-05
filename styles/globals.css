@@ -8,4 +8,5 @@ html {
     rgba(2, 14, 28, 1) 0%,
     rgba(14, 28, 45, 1) 100%
   );
+  background-size: cover;
 }

@@ -48,7 +48,7 @@ export default function Home() {
             textAlign: "center",
           }}
         >
-          Powered by OpenAi
+          Powered by OpenAI
         </Typography>
       </Box>
       <TextField

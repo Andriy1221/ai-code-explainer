@@ -1,0 +1,25 @@
+const languages = [
+  "Java",
+  "C",
+  "C++",
+  "Python",
+  "C#",
+  "Visual Basic .NET",
+  "JavaScript",
+  "PHP",
+  "SQL",
+  "Assembly language",
+  "Swift",
+  "Ruby",
+  "Delphi/Object Pascal",
+  "R",
+  "Objective-C",
+  "Go",
+  "MATLAB",
+  "PL/SQL",
+  "Transact-SQL",
+  "Lisp",
+  "Kotlin",
+];
+
+export default languages;

@@ -11,8 +11,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   console.log(req.body);
-  const { input } = req.body;
-  const prompt = `Explain the following code and use as few words as possible: ${input}`;
+  const { language, input } = req.body;
+  const prompt = `The following code is writting in ${language}. Explain the code and use as few words as possible: ${input}`;
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt,

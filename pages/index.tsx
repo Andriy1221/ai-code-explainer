@@ -3,28 +3,55 @@ import {
   Button,
   CircularProgress,
   Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
   TextField,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import Footer from "../components/Footer";
+import languages from "../data/languages";
 
 export default function Home() {
   const [input, setInput] = useState("");
+  const [language, setLanguage] = useState("");
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [languageTouched, setLanguageTouched] = useState(false);
+  const [inputTouched, setInputTouched] = useState(false);
+
+  function handleSubmit() {
+    if (isValid()) {
+      fetchAiResponse();
+    } else {
+      showError();
+    }
+  }
 
   async function fetchAiResponse() {
     setLoading(true);
-    const res = await axios.post("/api/completion", { input });
+    const res = await axios.post("/api/completion", { language, input });
     setResult(res.data.result);
     setLoading(false);
   }
 
   function clear() {
     setInput("");
+    setInputTouched(false);
     setResult("");
+  }
+
+  function isValid() {
+    return language.length > 0 && input.length > 0;
+  }
+
+  function showError() {
+    setLanguageTouched(true);
+    setInputTouched(true);
   }
 
   return (
@@ -53,12 +80,46 @@ export default function Home() {
             Powered by OpenAI
           </Typography>
         </Box>
+        <Box
+          sx={{ mb: 2, display: "flex", flexDirection: "row", columnGap: 2 }}
+        >
+          <FormControl sx={{ width: 300 }}>
+            <InputLabel sx={{ color: "#363d54" }}>Code language</InputLabel>
+            <Select
+              label="Code language"
+              color="primary"
+              error={languageTouched && language.length === 0}
+              inputProps={{
+                MenuProps: {
+                  MenuListProps: {
+                    sx: {
+                      backgroundColor: "rgba(2, 14, 28, 1)",
+                      color: "primary.main",
+                    },
+                  },
+                },
+              }}
+              sx={{ "& .MuiSelect-icon": { color: "#363d54" } }}
+              onChange={(e: SelectChangeEvent) => {
+                setLanguage(e.target.value);
+                setLanguageTouched(true);
+              }}
+            >
+              {languages.sort().map((language) => (
+                <MenuItem key={language} value={language}>
+                  {language}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
         <TextField
           multiline
           minRows={10}
           placeholder="Paste your code in here and let the AI explain it for you"
           color="primary"
           value={input}
+          error={inputTouched && input.length === 0}
           onChange={(e) => setInput(e.target.value)}
           sx={{ width: 1 }}
         ></TextField>
@@ -79,7 +140,7 @@ export default function Home() {
             <Button
               variant="contained"
               sx={{ px: 6, mt: 2 }}
-              onClick={fetchAiResponse}
+              onClick={handleSubmit}
             >
               Submit
             </Button>

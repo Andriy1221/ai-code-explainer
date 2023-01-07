@@ -144,7 +144,7 @@ export default function Home() {
           </FormControl>
           <FormControl sx={{ width: 250 }}>
             <FormLabel sx={{ color: "secondary.main", mb: 1, ml: "-18px" }}>
-              Answer lenght
+              Answer length
             </FormLabel>
             <Slider
               defaultValue={3}

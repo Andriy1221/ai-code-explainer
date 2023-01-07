@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Configuration, OpenAIApi } from "openai";
+import { Length } from "../../models/models";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -10,9 +11,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.body);
-  const { language, input } = req.body;
-  const prompt = `The following code is writting in ${language}. Explain the code and use as few words as possible: ${input}`;
+  const { language, length, input } = req.body;
+  const prompt = `The following code is writting in ${language}. Explain the code and keep the answer length within ${length} sentences. Here is the code: ${input}`;
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt,

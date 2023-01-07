@@ -3,11 +3,15 @@ import type { AppProps } from "next/app";
 import { createTheme, ThemeProvider } from "@mui/material";
 
 const primary = "#c6d1f5";
+const secondary = "#6A7088";
 
 const theme = createTheme({
   palette: {
     primary: {
       main: primary,
+    },
+    secondary: {
+      main: secondary,
     },
   },
   typography: {
@@ -20,7 +24,7 @@ const theme = createTheme({
           color: primary,
           backgroundColor: "rgba(2, 14, 28, 1)",
           "& fieldset": {
-            borderColor: "#363d54",
+            borderColor: secondary,
           },
 
           "&:hover fieldset": {

@@ -41,6 +41,19 @@ const theme = createTheme({
         },
       },
     },
+    MuiList: {
+      styleOverrides: {
+        root: {},
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          border: "1px solid #0b1a33",
+          backgroundColor: "#0b1a33",
+        },
+      },
+    },
   },
 });
 

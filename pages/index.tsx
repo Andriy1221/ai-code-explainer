@@ -135,7 +135,7 @@ export default function Home() {
                 setLanguageTouched(true);
               }}
             >
-              {languages.sort().map((language) => (
+              {languages.map((language) => (
                 <MenuItem key={language} value={language}>
                   {language}
                 </MenuItem>
